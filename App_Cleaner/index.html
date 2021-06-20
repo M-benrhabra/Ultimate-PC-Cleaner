@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-blue-grey w3-bar-block" style="width:25%">
+        <h3 class="w3-bar-item">Menu</h3>
+        <a href="#" class="w3-bar-item w3-button"><i class="w3-spin fa fa-refresh"></i> Analyse</a>
+        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-bars"></i> Historique</a>
+        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-trash"></i> Nettoyer</a>
+    </div>
+
+    <!-- Page Content -->
+    <div style="margin-left:25%">
+
+        <div class="w3-container w3-light-grey">
+            <h1>PC-CLEANER</h1>
+        </div>
+
+        <div class="w3-container">
+            <div class="flex-container">
+                <div class="w3-light-grey divv">
+                    <img class="imag" src="image/seo.png" alt="Analyse" width="50%" height="50%">
+                    <button type="button" class="btn  btn-sm   butn" id="btnAnalyse"> Analyse </button>
+
+                </div>
+                <div class="w3-light-grey divv">
+                    <img class="imag" src="image/responsive.png" alt="Analyse" width="50%" height="50%">
+                    <button type="button" class="btn btn-sm  butn" id="btnHisto">Historique</button>
+                </div>
+                <div class="w3-light-grey divv">
+                    <img class="imag" src="image/project.png" alt="Analyse" width="50%" height="50%">
+                    <button type="button" class="btn btn-sm  butn" id="btnClean">Nettoyer</button>
+                </div>
+
+            </div>
+            <!-- <button type="button" id="btnn">Click Me</button> -->
+            <div style="display: flex; justify-content: space-between; width: 50%;">
+                <p id="demo"></p>
+                <p id="megaB"></p>
+            </div>
+
+
+            <p id="cookie"></p>
+            <p id="cl"></p>
+        </div>
+
+    </div>
+
+
+    <!-- <p id="demo"></p> -->
+
+
+
+</body>
+<script type="module" src="index.js">
+</script>
+<script>
+    document.getElementById("btnAnalyse").addEventListener("click", () => {
+        const fs = require('fs');
+        const os = require('os');
+        const file = require('file-system');
+
+        fs.readdir(`${os.tmpdir()}`, (err, files) => {
+            if (err) {
+                return;
+            }
+            else {
+                let doc = document.getElementById("demo");
+                doc.innerHTML = "You have " + files.length + " temporary files  ";
+                // console.count(files.length);
+            }
+        });
+
+        const getSize = require('get-folder-size');
+        const myFolder = "C:\\Users\\youcode\\AppData\\Local\\Temp";
+        getSize(myFolder, (err, size) => {
+            if (err) { throw err; }
+
+            // console.log(size + ' bytes');
+
+            let megaB = document.getElementById("megaB");
+            megaB.innerHTML = (size / 1024 / 1024).toFixed(2) + ' MB';;
+            // console.log(mB);
+        });
+
+        const cook = document.getElementById("cookie");
+        const diri = "C:\\Users\\youcode\\AppData\\Local\\Google\\Chrome\\User Data\\Default";
+        fs.readdir(diri, (errr, cookie) => {
+
+
+            if (errr) {
+                console.log("err");
+                return;
+            } else {
+
+                // console.log(cookie.length);
+                cook.innerHTML = "You have: " + cookie.length + "Cookies";
+            }
+
+
+
+        });
+    }, false);
+
+    document.getElementById("btnClean").addEventListener('click', () => {
+        const fs = require('fs');
+        const path = require('path');
+
+        const directory = 'C:\\Users\\youcode\\Desktop\\design';
+
+        fs.readdir(directory, (err, files) => {
+            if (err) throw err;
+
+            for (const file of files) {
+                fs.unlink(path.join(directory, file), err => {
+                    if (err) throw err;
+                });
+            }
+        });
+        document.getElementById("cl").innerHTML = "Your files has been deleted"
+    }, false);
+
+
+</script>
+
+</html>

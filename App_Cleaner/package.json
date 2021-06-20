@@ -1,0 +1,17 @@
+{
+  "name": "app_cleaner",
+  "version": "1.0.0",
+  "description": "App Desktop Cleaner ",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Merien Benrhebra",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^11.2.2",
+    "file-system": "^2.2.2",
+    "get-folder-size": "^2.0.1",
+    "temp": "^0.9.4"
+  }
+}

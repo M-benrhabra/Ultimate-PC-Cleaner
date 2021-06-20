@@ -1,0 +1,40 @@
+.flex-container {
+    margin-top: 40px;
+    display: flex;
+
+}
+
+.flex-container>div {
+    /* background-color: DodgerBlue; */
+    /* color: white; */
+    width: 160px;
+    height: 170px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+}
+
+.divv{
+    display:flex; 
+    flex-direction: column;
+    justify-content: center;
+}
+
+.imag{
+    margin-left: 35px; 
+}
+.butn{
+    /* color: black; */
+    width: 65%; 
+    height : 15%; 
+    margin-top: 15px;
+    margin-left: 30px;
+    font-size: 13px;
+    text-align: center;
+    background-color:#889c9c;
+    
+}
+.btn:hover{
+    background-color: #889c9c !important;
+}
